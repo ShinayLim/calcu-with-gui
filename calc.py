@@ -209,8 +209,8 @@ class Calculator:
                     bg=self.theme["special_button_bg"], fg=self.theme["button_fg"])
 
     def createThemeToggleButton(self):
-        themeButton = tk.Button(self.buttonsFrame, text="Toggle Theme", font=defaultFontStyle,
-                                borderwidth=0, command=self.toggleTheme)
+        themeButton = tk.Button(self.buttonsFrame, text="🌙", font=defaultFontStyle,
+                            borderwidth=0, command=self.toggleTheme)
         themeButton.grid(row=0, column=4, sticky=tk.NSEW)
 
     def run(self):
