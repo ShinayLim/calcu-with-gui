@@ -104,9 +104,10 @@ class Calculator:
 
     def createDigitButtons(self):
         for digit, gridValue in self.digits.items():
-            button = tk.Button(self.buttonsFrame, text=str(digit), bg=white, fg=labelColor, font=digitsFontStyle,
-                               borderwidth=0, command=lambda x=digit: self.addToExpression(x))
+            button = tk.Button(self.buttonsFrame, text=str(digit), bg=self.theme["button_bg"], fg=self.theme["button_fg"], font=digitsFontStyle,
+                           borderwidth=0, command=lambda x=digit: self.addToExpression(x))
             button.grid(row=gridValue[0], column=gridValue[1], sticky=tk.NSEW)
+
 
     def appendOperator(self, operator):
         self.currentExpression += operator
@@ -193,10 +194,9 @@ class Calculator:
     def applyTheme(self):
         self.window.config(bg=self.theme["bg"])
 
-        for widget in self.window.winfo_children():
+        for widget in self.buttonsFrame.winfo_children():
             if isinstance(widget, tk.Button):
-                widget.config(bg=self.theme["button_bg"],
-                              fg=self.theme["button_fg"])
+                widget.config(bg=self.theme["button_bg"], fg=self.theme["button_fg"])
 
         self.displayFrame.config(bg=self.theme["display_bg"])
         self.label.config(bg=self.theme["label_bg"], fg=self.theme["fg"])
