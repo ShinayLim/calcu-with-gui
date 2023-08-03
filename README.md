@@ -10,6 +10,11 @@ This is a simple calculator application built using Python and the Tkinter libra
 - Equal (=) button to evaluate the expression.
 - Dark mode and light mode themes for a personalized user experience.
 
+## Screenshots
+
+![Calculator Light Mode](screenshots/calc-light.jpeg)     
+![Calculator Dark Mode](screenshots/calc-dark.jpeg)
+
 ## Prerequisites
 
 Before running the calculator, make sure you have Python installed on your computer.
