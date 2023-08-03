@@ -1,5 +1,26 @@
 import tkinter as tk
 
+DARK_THEME = {
+    "bg": "#1E1E1E",
+    "fg": "#FFFFFF",
+    "button_bg": "#2A2A2A",
+    "button_fg": "#FFFFFF",
+    "display_bg": "#000000",
+    "label_bg": "#1E1E1E",
+    "special_button_bg": "#2A2A2A",
+}
+
+LIGHT_THEME = {
+    "bg": "#FFFFFF",
+    "fg": "#000000",
+    "button_bg": "#F5F5F5",
+    "button_fg": "#000000",
+    "display_bg": "#F5F5F5",
+    "label_bg": "#F5F5F5",
+    "special_button_bg": "#CCEDFF",
+}
+
+
 largeFontStyle = ("Arial", 40, "bold")
 smallFontStyle = ("Arial", 16)
 digitsFontStyle = ("Arial", 24, "bold")
@@ -19,6 +40,7 @@ class Calculator:
         self.window.resizable(0, 0)
         self.window.title("Calculator")
 
+        self.theme = LIGHT_THEME
         self.totalExpression = ""
         self.currentExpression = ""
         self.displayFrame = self.createDisplayFrame()
@@ -31,7 +53,7 @@ class Calculator:
             1: (3, 1), 2: (3, 2), 3: (3, 3),
             0: (4, 2), '.': (4, 1)
         }
-        
+
         self.operations = {"/": "\u00F7", "*": "\u00D7", "-": "-", "+": "+"}
         self.buttonsFrame = self.createButtonsFrame()
 
@@ -47,10 +69,12 @@ class Calculator:
     def bindKeys(self):
         self.window.bind("<Return>", lambda event: self.evaluate())
         for key in self.digits:
-            self.window.bind(str(key), lambda event, digit=key: self.addToExpression(digit))
+            self.window.bind(str(key), lambda event,
+                             digit=key: self.addToExpression(digit))
 
         for key in self.operations:
-            self.window.bind(key, lambda event, operator=key: self.appendOperator(operator))
+            self.window.bind(key, lambda event,
+                             operator=key: self.appendOperator(operator))
 
     def createSpecialButtons(self):
         self.createClearButton()
@@ -158,6 +182,36 @@ class Calculator:
 
     def updateLabel(self):
         self.label.config(text=self.currentExpression[:11])
+
+    def toggleTheme(self):
+        if self.theme == LIGHT_THEME:
+            self.theme = DARK_THEME
+        else:
+            self.theme = LIGHT_THEME
+        self.applyTheme()
+
+    def applyTheme(self):
+        self.window.config(bg=self.theme["bg"])
+
+        for widget in self.window.winfo_children():
+            if isinstance(widget, tk.Button):
+                widget.config(bg=self.theme["button_bg"],
+                              fg=self.theme["button_fg"])
+
+        self.displayFrame.config(bg=self.theme["display_bg"])
+        self.label.config(bg=self.theme["label_bg"], fg=self.theme["fg"])
+        self.totalLabel.config(bg=self.theme["label_bg"], fg=self.theme["fg"])
+
+        # Special buttons (C, x², √, and =) have a different background color
+        for widget in self.buttonsFrame.winfo_children():
+            if widget["text"] in ["C", "x²", "\u221ax", "="]:
+                widget.config(
+                    bg=self.theme["special_button_bg"], fg=self.theme["button_fg"])
+
+    def createThemeToggleButton(self):
+        themeButton = tk.Button(self.buttonsFrame, text="Toggle Theme", font=defaultFontStyle,
+                                borderwidth=0, command=self.toggleTheme)
+        themeButton.grid(row=0, column=4, sticky=tk.NSEW)
 
     def run(self):
         self.window.mainloop()
