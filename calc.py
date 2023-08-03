@@ -1,6 +1,6 @@
 import tkinter as tk
 
-largeFontStyle = ("Arial", 40)
+largeFontStyle = ("Arial", 40, "bold")
 smallFontStyle = ("Arial", 16)
 lightGray = "#f5f5f5"
 labelColor = "#25265e"
@@ -17,6 +17,14 @@ class Calculator:
         self.displayFrame = self.createDisplayFrame()
 
         self.totalLabel, self.label = self.createDisplayLabels()
+
+        self.digits = {
+            7: (1, 1), 8: (1, 2), 9: (1, 3),
+            4: (2, 1), 5: (2, 2), 6: (2, 3),
+            1: (3, 1), 2: (3, 2), 3: (3, 3),
+            0: (4, 2), '.': (4, 1)
+        }
+
         self.buttonsFrame = self.createButtonsFrame()
 
     def createDisplayLabels(self):
