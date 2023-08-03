@@ -12,8 +12,7 @@ This is a simple calculator application built using Python and the Tkinter libra
 
 ## Screenshots
 
-![Calculator Light Mode](screenshots/calc-light.jpeg)     
-![Calculator Dark Mode](screenshots/calc-dark.jpeg)
+![Calculator Light Mode](calc-light.png)     ![Calculator Dark Mode](calc-dark.png)
 
 ## Prerequisites
 
