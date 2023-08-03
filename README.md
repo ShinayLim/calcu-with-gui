@@ -28,5 +28,12 @@ Before running the calculator, make sure you have Python installed on your compu
 
 4. Run the calculator using the following command:
 
+## Installing the EXE File
+1. Locate the "build" folder within the calculator application directory.
+   
+2. Inside the "lib" directory, you'll find the "calc.exe" executable file.
+   
+3. Download the "calc.exe" file and proceed with the installation.
+
    ```bash
    python calculator.py
