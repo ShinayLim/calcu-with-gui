@@ -219,4 +219,6 @@ class Calculator:
 
 if __name__ == "__main__":
     calc = Calculator()
+    calc.applyTheme()  # Apply the default theme (light mode)
+    calc.createThemeToggleButton()  # Create the toggle button to switch between modes
     calc.run()
